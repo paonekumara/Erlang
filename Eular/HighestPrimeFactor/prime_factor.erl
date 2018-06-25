@@ -20,6 +20,7 @@ isPrime(N, I) ->        %when I =< (N div 2)
                         true -> isPrime(N, I+1) end;
                 true -> isPrime(0, 0) end;
         true -> isPrime(1, 1) end.
+    
 %%%%%   %%%%%   %%%%%   %%%%%   %%%%%   To find Factors   %%%%%   %%%%%   %%%%%   %%%%%   %%%%%   %%%%%
 findFactors(Num, I) ->          %when I < (Num / 2)
     Quotient = Num div 2,
