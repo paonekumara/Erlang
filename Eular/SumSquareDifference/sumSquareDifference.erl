@@ -7,7 +7,7 @@
 %%%%%  %%%%%  %%%%%  %%%%%  %%%%%  Answer %%%%%  %%%%%  %%%%%  %%%%%  %%%%%
 % c(sumSquareDifference).
 % sumSquareDifference:sumSquareDifferenceInSeriesOfNumbers(1, 10).    Answer is :: 2640
-% sumSquareDifference:sumSquareDifferenceInSeriesOfNumbers(1, 20).    Answer is :: 41230
+% sumSquareDifference:sumSquareDifferenceInSeriesOfNumbers(1, 100).    Answer is :: 25164150
 
 %%%%%  %%%%%  %%%%%  %%%%%  %%%%%  %%%%% %%%%%  %%%%%  %%%%%  %%%%%  %%%%%
 
