@@ -4,72 +4,24 @@
 % find the sum of the even-valued terms.
 
 -module(fibonacci).
--export([main/1, sum/1, fibonacci/4, fibonacci/1]).
+-export([main/1]).
 
+main(Until_n) -> 
+    Series = fibonacci(Until_n),
+    TotalSum = sum(Series),
+    io:format("Series::~w Total sum is:~w ~n", [Series, TotalSum]).
+
+%----------------------------------------   Summation of a Numbers in list   ----------------------------------------%
 sum(L) -> sum(L, 0).
 
-sum([H|T], Acc) -> 
-    Temp = if
-            H rem 2 =:= 0 -> H;
-            true -> 0
-        end,
-    sum(T, Temp + Acc);
+sum([H|T], Acc) when (H rem 2) =:= 0 -> sum(T, H + Acc);
+sum([_|T], Acc) -> sum(T, Acc);
 sum([], Acc) -> Acc.
-
-
-
-fibonacci(N) -> 
-    fibonacci(N, 0, 0, 0).
+%----------------------------------------   Fibonacci series till n   ----------------------------------------%
+fibonacci(Until_n) -> fibonacci(Until_n, 0, 0, 0).
 
 fibonacci(N, N, _, _) ->     [];
 fibonacci(N, 0, _, _) ->     [0|fibonacci(N, 1, 0, 1)];
 fibonacci(N, 1, _, _) ->     [1|fibonacci(N, 2, 1, 1)];
-fibonacci(N, Current, X, Y) -> 
-    A = Y + X,
-    Z = if
-            N > A -> A;
-            true -> N
-        end,
-    [Y|fibonacci(N, Z, Y, A)].
-
-main(N) -> 
-    Series = fibonacci(N),
-    TotalSum = sum(Series),
-    io:format("Series::~w Total sum is:~w ~n", [Series, TotalSum]).
-
-
-
-
-
-
-
-
-
-
-
-
-% fibonacci(N) -> 
-%     fibonacci(N, 0, 0, 0).
-%     % io:format("X:::~w ~n", [X]).
-
-% fibonacci(N, N, _, _) -> 
-%     % io:format("Current and Entered are same.~w ~n", [F]),
-%     [];
-% fibonacci(N, 0, _, _) -> 
-%     % io:format("Current number is zero.~n"),
-%     % fibonacci(N, 1, 0, 1);
-%     [0|fibonacci(N, 1, 0, 1)];
-% fibonacci(N, 1, _, _) -> 
-%     % io:format("Current number is one.~n"),
-%     % fibonacci(N, 2, 1, 1);
-%     [1|fibonacci(N, 2, 1, 1)];
-% fibonacci(N, Current, X, Y) -> 
-%     % io:format("Current:::~w.~n", [Current]),
-%     A = Y + X,
-%     Z = if
-%             N > A -> A;
-%             true -> N
-%         end,
-%     % io:format("A:::~w z::~w Y::~w.~n", [A, Z, Y]),
-%     % fibonacci(N, Current + 1, Y, Y + X).
-%     [Y|fibonacci(N, Z, Y, A)].
+fibonacci(N, _, X, Y) when N > (Y + X) -> [Y|fibonacci(N, Y + X, Y, Y + X)];
+fibonacci(N, _, X, Y) -> [Y|fibonacci(N, N, Y, Y + X)].

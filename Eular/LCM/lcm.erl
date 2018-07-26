@@ -7,21 +7,18 @@
 %%lcm:lcmOfSeriesFrom(1, 20).       Ans::232792560
 
 -module(lcm).
--export([gcd/2, lcm/2, lcmOfSeriesFrom/2]).
+-export([lcmOfSeriesFrom/2]).
 
 lcmOfSeriesFrom(I, J) -> lcmOfASeries(I, J, 1).
 
+%----------------------------------------   To find GCD of 2 numbers   ----------------------------------------%
 gcd(A, A) -> A;
-gcd(A, B) -> 
-    if
-        A > B -> gcd(A - B, B);
-        true -> gcd(A, B - A) end.
-
-lcm(A, B) ->
-    (A * B) div gcd(A, B).
-
+gcd(A, B) when A > B -> gcd(A - B, B);
+gcd(A, B) -> gcd(A, B - A).
+%----------------------------------------   To find LCM of 2 numbers   ----------------------------------------%
+lcm(A, B) -> (A * B) div gcd(A, B).
+%----------------------------------------   LCM of a Series   ----------------------------------------%
 lcmOfASeries(X, X, LCM) -> LCM;
 lcmOfASeries(X, Y, LCM) -> 
-    % io:format("x:::~w......y:::~w ~n", [X, Y]),
     Temp = lcm(LCM, Y),
     lcmOfASeries(X, Y - 1, Temp).
